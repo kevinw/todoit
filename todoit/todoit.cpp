@@ -236,7 +236,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	{
 		RECT rect;
 		GetClientRect(hWnd, &rect);
-		FillRect((HDC)wParam, &rect, CreateSolidBrush(RGB(0, 0, 0)));
+		auto hdc = (HDC)(wParam);
+		{
+			auto brush = CreateSolidBrush(TRANSPARENT_COLOR);
+			FillRect(hdc, &rect, brush);
+			DeleteObject(brush);
+		}
+		SelectObject(hdc, GetStockObject(BLACK_BRUSH));
+		RoundRect(hdc, rect.left, rect.top, rect.right, rect.bottom, 8, 8);
 		break;
 	}
     case WM_PAINT:
