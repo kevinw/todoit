@@ -6,8 +6,8 @@
 #define IDT_TIMER1 1001
 #define IDT_HOTKEY 1002
 #define TRANSPARENT_COLOR RGB(255, 0, 255)
-#define FONT_SIZE 24
-#define TODO_FILENAME "C:\\Users\\Kevin\\Dropbox\\todo.txt"
+#define FONT_SIZE 80
+#define TODO_FILENAME "C:\\Users\\kev\\todo.txt"
 #define MAX_STRING_SIZE 500
 
 HINSTANCE hInst;                                // current instance
@@ -27,6 +27,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
 
+	SetProcessDpiAwareness(PROCESS_PER_MONITOR_DPI_AWARE);
+
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
     LoadStringW(hInstance, IDC_TODOIT, szWindowClass, MAX_LOADSTRING);
     MyRegisterClass(hInstance);
@@ -44,8 +46,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     return (int) msg.wParam;
 }
-
-
 
 //
 //  FUNCTION: MyRegisterClass()
@@ -172,9 +172,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
    hInst = hInstance;
 
-   const auto x = 1150;
+   const auto x = 0;
    const auto y = 0;
-   const auto width = 300;
+   const auto width = 1800;
    const auto height = 200;
 
    HWND hWnd = CreateWindowExW(
